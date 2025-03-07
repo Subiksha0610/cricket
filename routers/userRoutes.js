@@ -15,16 +15,32 @@ router.get('/:phoneNumber', async (req, res) => {
 });
 
 // POST (Create New User)
-router.post('/', async (req, res) => {
+router.post("/users", async (req, res) => {
     try {
-        const { username, email, phoneNumber, referralCode, profilePhoto } = req.body;
-        const newUser = new User({ username, email, phoneNumber, referralCode, profilePhoto });
-        await newUser.save();
-        res.status(201).json(newUser);
+      const { id, username, email, phoneNumber, createdAt, referralCode, profilePhoto } = req.body;
+      
+      if (!id) {
+        return res.status(400).json({ message: "ID is required" });
+      }
+  
+      const newUser = new User({
+        id,
+        username,
+        email,
+        phoneNumber,
+        createdAt,
+        referralCode,
+        profilePhoto
+      });
+  
+      await newUser.save();
+      res.status(201).json({ message: "User created successfully", user: newUser });
+  
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
-});
+  });
+
 
 // PUT (Update User by Phone Number)
 router.put('/:phoneNumber', async (req, res) => {

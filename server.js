@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const mongoose = require("./db"); 
 const cors = require('cors');
 const connectDB = require('./config/db');
 const userRoutes = require('./routers/userRoutes');
@@ -12,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/users', userRoutes);
+app.use("/", userRoutes);
 
 
 const PORT = process.env.PORT || 8080; // Use Render's PORT
