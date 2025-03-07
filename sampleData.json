@@ -1,0 +1,11 @@
+[
+    {
+      "username": "John Doe",
+      "email": "john@example.com",
+      "phoneNumber": "1234567890",
+      "referralCode": "ABC123",
+      "profilePhoto": "https://example.com/photo.jpg",
+      "createdAt": "2025-03-07T10:00:00.000Z"
+    }
+  ]
+  
