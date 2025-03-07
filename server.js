@@ -16,8 +16,9 @@ app.use('/users', userRoutes);
 
 
 const PORT = process.env.PORT || 8080; // Use Render's PORT
+const BASE_URL = process.env.BASE_URL || "http://localhost:8080";
 
 app.get("/", (req, res) => {
-  res.send("API is running on Render!");
-});
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+    res.json({ message: "🚀 API is running!", base_url: BASE_URL });
+  });
+  app.listen(PORT, () => console.log(`✅ Server running at ${BASE_URL}`));
