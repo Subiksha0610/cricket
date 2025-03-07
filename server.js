@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("./db"); // Import database connection
-const userRoutes = require("./routes/userRoutes"); // Import user routes
+const userRoutes = require("./routers/userRoutes"); // Import user routes
 
 dotenv.config(); // Load environment variables
 
