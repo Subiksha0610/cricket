@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    phoneNumber: String,
-    referralCode: String,
-    profilePhoto: String,
-    createdAt: { type: Date, default: Date.now }
-});
-
-module.exports = mongoose.model('User', UserSchema);
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true },
+    email: { type: String, required: true },
+    id: { type: Number, required: true },
+    phoneNumber: { type: String, required: true, unique: true }, // UNIQUE FIELD
+    createdAt: { type: Date, default: Date.now },
+    referralCode: { type: String },
+    profilePhoto: { type: String }
+  });
+  
+  const User = mongoose.model("User", userSchema);
+  
+  module.exports = User;
