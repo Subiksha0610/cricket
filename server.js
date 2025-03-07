@@ -1,25 +1,20 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const mongoose = require("./db"); 
-const cors = require('cors');
-const connectDB = require('./config/db');
-const userRoutes = require('./routers/userRoutes');
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const mongoose = require("./db"); // Import database connection
+const userRoutes = require("./routes/userRoutes"); // Import user routes
 
-dotenv.config();
-connectDB();
+dotenv.config(); // Load environment variables
 
 const app = express();
+app.use(express.json()); // Middleware to parse JSON requests
+app.use(cors()); // Enable CORS
 
-app.use(cors());
-app.use(express.json());
+const BASE_URL = "https://cricket-ufv4.onrender.com"; // Render API URL
 
+// Routes
 app.use("/", userRoutes);
 
-
-const PORT = process.env.PORT || 8080; // Use Render's PORT
-const BASE_URL = process.env.BASE_URL || "http://localhost:8080";
-
-app.get("/", (req, res) => {
-    res.json({ message: "🚀 API is running!", base_url: BASE_URL });
-  });
-  app.listen(PORT, () => console.log(`✅ Server running at ${BASE_URL}`));
+// Start Server on Port 8080
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server running at ${BASE_URL} on port ${PORT}`));
